@@ -13,10 +13,10 @@
     LOGFILE="/tmp/$0-$DATE.log"
         
     #adding colours
-    R="/e[31m" #RED
-    G="/e[32m" #GREEN
-    Y="/e[33m" #YELLOW
-    N="/e[0m"  #NO COLOR
+    R="\e[31m" #RED
+    G="\e[32m" #GREEN
+    Y="\e[33m" #YELLOW
+    N="\e[0m"  #NO COLOR
 
     echo "sript started executing at $TIMESTAMP" &>> $LOGFILE
 
