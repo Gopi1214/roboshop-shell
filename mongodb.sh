@@ -23,7 +23,7 @@
     #validate function to check weather the bash command was success or failed.
 
     VALIDATE(){
-        if[ $1 -ne 0 ]
+        if [ $1 -ne 0 ]
         then 
             echo -e "$2 was ... $R FAILED $N"
         else
