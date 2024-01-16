@@ -33,7 +33,7 @@ VALIDATE(){
     fi
 }
 
-if [ ID -ne 0 ]
+if [ $ID -ne 0 ]
 then
     echo -e "$R ERROR::$N user has no root access"
     exit 1
