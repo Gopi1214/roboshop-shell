@@ -74,7 +74,7 @@ curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zi
 
 cd /app
 
-unzip /tmp/catalogue.zip &>> $LOGFILE
+unzip -u /tmp/catalogue.zip &>> $LOGFILE
 
 VALIDATE $? "unzipping catalogue" 
 
