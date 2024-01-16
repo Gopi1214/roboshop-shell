@@ -33,13 +33,13 @@ VALIDATE(){
     fi
 }
 
- if [ ID -ne 0 ]
- then
-     echo -e "$R ERROR::$N user has no root access"
-     exit 1
- else
-     echo -e "user has no root access"
- fi
+if [ ID -ne 0 ]
+then
+    echo -e "$R ERROR::$N user has no root access"
+    exit 1
+else
+    echo -e "user has root access"
+fi
  
 echo -e "$G started installation of nodejs $N"
 
