@@ -26,6 +26,7 @@
         if [ $1 -ne 0 ]
         then 
             echo -e "$2 was ... $R FAILED $N"
+            exit 1
         else
             echo -e "$2 was ... $G SUCCESS $N"
         fi
@@ -34,6 +35,7 @@
     if [ $ID -ne 0 ]
     then 
         echo -e "$R ERROR::$N user has no root acces, not allowed to execute below commands"
+        exit 1
     else
         echo -e "user has $G root $N access"
     fi
