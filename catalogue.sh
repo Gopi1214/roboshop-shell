@@ -84,7 +84,7 @@ VALIDATE $? "installing dependencies"
 
 #using absolute path because catgalogue.services exists there
 
-cp -u /home/centos/catalogue.service /etc/systemd/system/catalogue.service
+cp -u /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 systemctl daemon-reload &>> $LOGFILE
 
