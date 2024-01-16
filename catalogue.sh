@@ -8,7 +8,7 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 
 #writing the logs of commands to logfile.
 
-LOGFILE="/tmp/$0-TIMESTAMP.log"
+LOGFILE="/tmp/$0-$TIMESTAMP.log"
    
 #adding colours.
 
