@@ -17,8 +17,6 @@ G="\e[32m" #GREEN
 Y="\e[33m" #YELLOW
 N="\e[0m"  #NO COLOR
 
-MONGODB_HOST=mongodb.gmdproducts.online
-
 echo "script started executing at $TIMESTAMP" &>> $LOGFILE
 
 #validate function to check weather the bash command was success or failed.
@@ -59,8 +57,8 @@ id roboshop
 
 if [ $? -ne 0 ]
 then
-    useradd roboshop
-    VALIDATE $? "roboshop user creation" &>> $LOGFILE
+    useradd roboshop &>> $LOGFILE
+    VALIDATE $? "roboshop user creation" 
 else
     echo -e "user already exits $Y SKIPPING $N"
 fi
@@ -70,11 +68,11 @@ mkdir -p /app
 
 VALIDATE $? "creating app directory" &>> $LOGFILE
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+curl -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip
 
 cd /app
 
-unzip -u /tmp/catalogue.zip &>> $LOGFILE
+unzip -u /tmp/user.zip &>> $LOGFILE
 
 VALIDATE $? "unzipping catalogue" 
 
@@ -84,19 +82,19 @@ VALIDATE $? "installing dependencies"
 
 #using absolute path because catgalogue.services exists there
 
-cp -u /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
+cp -u /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service
 
 systemctl daemon-reload &>> $LOGFILE
 
-VALIDATE $? "catalogue daemon-reload"
+VALIDATE $? "user daemon-reload"
 
-systemctl enable catalogue &>> $LOGFILE
+systemctl enable user &>> $LOGFILE
 
-VALIDATE $? "catalogue enable"
+VALIDATE $? "user enable"
 
-systemctl start catalogue &>> $LOGFILE
+systemctl start user &>> $LOGFILE
 
-VALIDATE $? "start catalogue"
+VALIDATE $? "start user"
 
 cp -u /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo 
 
@@ -106,6 +104,6 @@ dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "installing mongodb client"
 
-mongo --host $MONGODB_HOST </app/schema/catalogue.js &>> $LOGFILE
+mongo --host $MONGODB_HOST </app/schema/user.js &>> $LOGFILE
 
 VALIDATE $? "loading schema into mongodb"
