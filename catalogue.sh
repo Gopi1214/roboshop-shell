@@ -17,7 +17,7 @@ G="\e[32m" #GREEN
 Y="\e[33m" #YELLOW
 N="\e[0m"  #NO COLOR
 
-#MONGODB_HOST=mongodb.gmdproducts.online
+MONGODB_HOST=mongodb.gmdproducts.online
 
 echo "script started executing at $TIMESTAMP" &>> $LOGFILE
 
@@ -106,6 +106,6 @@ dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "installing mongodb client"
 
-mongo --host 172.31.39.143 </app/schema/catalogue.js &>> $LOGFILE
+mongo --host $MONGODB_HOST </app/schema/catalogue.js &>> $LOGFILE
 
 VALIDATE $? "loading schema into mongodb"
