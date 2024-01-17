@@ -53,7 +53,7 @@ VALIDATE $? "enabling nodejs:18"
 
 dnf install nodejs -y &>> $LOGFILE
 
-VALIDATE $? "installed nodejs"
+VALIDATE $? "installed nodejs:18"
 
 id roboshop
 
@@ -68,9 +68,9 @@ fi
 #-p, --parents  --no error if existing, make parent directories as needed
 mkdir -p /app
 
-VALIDATE $? "creating app directory" &>> $LOGFILE
+VALIDATE $? "creating app directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 
 cd /app
 
@@ -84,7 +84,7 @@ VALIDATE $? "installing dependencies"
 
 #using absolute path because catgalogue.services exists there
 
-cp -u /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 systemctl daemon-reload &>> $LOGFILE
 
@@ -98,7 +98,7 @@ systemctl start catalogue &>> $LOGFILE
 
 VALIDATE $? "start catalogue"
 
-cp -u /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo 
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo 
 
 VALIDATE $? "copying mongo repo"
 

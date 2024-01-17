@@ -26,10 +26,10 @@ VALIDATE(){
 if [ $ID -ne 0 ]
 then
     echo -e "$R ERROR::$N user has no root access"
-    exit 1
+    exit 1 #you can give other than 0
 else
-    echo -e "user has root access"
-fi
+    echo -e "You are root user"
+fi # fi means reverse of if, indicating condition end
 
 dnf module disable nodejs -y  &>> $LOGFILE
 
@@ -45,8 +45,6 @@ dnf install nodejs -y &>> $LOGFILE
 
 VALIDATE $? "installing nodejs"
 
-
-
 id roboshop
 
 if [ $? -ne 0 ]
@@ -55,12 +53,16 @@ then
     useradd roboshop &>> $LOGFILE
     VALIDATE $? "adding user roboshop" 
 else
-    echo "user already exits"
+    echo -e "user already exits $Y SKIPPING $N"
 fi
 
 mkdir -p /app &>> $LOGFILE
 
+VALIDATE $? "creating app directory"
+
 curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip
+
+VALIDATE $? "downloading cart application"
 
 cd /app
 
@@ -72,7 +74,10 @@ npm install &>> $LOGFILE
 
 VALIDATE $? "installing packages"
 
+#use absolute path, because cart.service exists there
 cp -u /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service
+
+VALIDATE $? "copying cart service file"
 
 systemctl daemon-reload &>> $LOGFILE
 

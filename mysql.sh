@@ -49,7 +49,7 @@ VALIDATE $? "enabling mysql"
 
 systemctl start mysqld &>> $LOGFILE 
 
-VALIDATE $? "starting mysql"
+VALIDATE $? "starting mysql server"
 
 mysql_secure_installation --set-root-pass RoboShop@1 &>> $LOGFILE
 

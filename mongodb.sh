@@ -10,7 +10,7 @@
 
     #writing the logs of commands to logfile
 
-    LOGFILE="/tmp/$0-$DATE.log"
+    LOGFILE="/tmp/$0-$TIMESTAMP.log"
         
     #adding colours
     R="\e[31m" #RED
@@ -40,7 +40,7 @@
         echo -e "user has $G root $N access"
     fi
 
-    cp -u mongo.repo /etc/yum.repos.d/mongo.repo
+    cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 
     VALIDATE $? "copied mongodb repo"
 
@@ -60,6 +60,8 @@
 
     sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOGFILE
 
+    VALIDATE $? "Remote access to MongoDB"
+    
     systemctl restart mongod &>> $LOGFILE
 
     VALIDATE $? "restarted mongodb"

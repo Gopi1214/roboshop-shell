@@ -55,7 +55,7 @@
 
     VALIDATE $? "moving nginx to html directory"
 
-    unzip /tmp/web.zip &>> $LOGFILE
+    unzip -o /tmp/web.zip &>> $LOGFILE
 
     VALIDATE $? "unzipping web app"
 

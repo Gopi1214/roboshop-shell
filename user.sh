@@ -9,6 +9,8 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 #writing the logs of commands to logfile.
 
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
+
+MONGODB_HOST=mongodb.gmdproducts.online
    
 #adding colours.
 
@@ -68,7 +70,9 @@ mkdir -p /app
 
 VALIDATE $? "creating app directory" &>> $LOGFILE
 
-curl -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip
+curl -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
+
+VALIDATE $? "Downloading user application"
 
 cd /app
 
@@ -82,7 +86,9 @@ VALIDATE $? "installing dependencies"
 
 #using absolute path because catgalogue.services exists there
 
-cp -u /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service
+cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service
+
+VALIDATE $? "copying user service file"
 
 systemctl daemon-reload &>> $LOGFILE
 
@@ -96,7 +102,7 @@ systemctl start user &>> $LOGFILE
 
 VALIDATE $? "start user"
 
-cp -u /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo 
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo 
 
 VALIDATE $? "copying mongo repo"
 
