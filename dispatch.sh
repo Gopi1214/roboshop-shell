@@ -43,6 +43,7 @@ then
     VALIDATE $? "user added"
 else
     echo "roboshop user already exists"
+fi
 
 mkdir -p /app &>> $LOGFILE
 
