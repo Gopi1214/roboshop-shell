@@ -1,5 +1,0 @@
-#!/bin/bash
-
-AMI=ami-0f3c7d07486cad139
-SG_ID=sg-04bb94f5d828fa09d
-
