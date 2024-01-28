@@ -23,6 +23,9 @@ echo "script started executing at $TIMESTAMP" &>> $LOGFILE
 
 #validate function to check weather the bash command was success or failed.
 
+GOPI(){
+    
+}
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
