@@ -7,7 +7,7 @@ ISTANCES=(mongodb, mysql, redis, rabbitmq, shipping, payment, user, cart, catalo
 for i in "${INSTANCES[@]}"
 do
     echo instance is: $i
-    if [ i == "mongodb" ] || [ i == "shipping" ] || [ i == "mysql" ]
+    if [ $i == "mongodb" ] || [ $i == "shipping" ] || [ $i == "mysql" ]
     then
         INSTANCE_TYPE="t3.small"
     else
