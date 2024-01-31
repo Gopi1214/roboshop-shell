@@ -16,7 +16,7 @@ do
         INSTANCE_TYPE="t2.micro"
     fi
 
-    IP_ADDRESS=$(aws ec2 run-instances --image-id $AMI --count 1 --instance-type t2.micro  --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query "Instances[0].PrivateIpAddress" --output text)
+    IP_ADDRESS=$(aws ec2 run-instances --image-id $AMI --count 1 --instance-type $INSTANCE_TYPE  --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query "Instances[0].PrivateIpAddress" --output text)
     #echo "instance is ip_address: $IP_ADDRESS"
     echo "$i: $IP_ADDRESS"
 
@@ -26,7 +26,7 @@ do
     --change-batch '
     {
         "Comment": "Creating a record set for cognito endpoint"
-        ,"Changes": [{
+        ,"Changes": [{ 
         "Action"              : "CREATE"
         ,"ResourceRecordSet"  : {
             "Name"              : "'$i'.'$DOMAIN_NAME'"
