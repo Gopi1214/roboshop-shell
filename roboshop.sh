@@ -2,6 +2,8 @@
 
 AMI=ami-0f3c7d07486cad139
 SG_ID=sg-04bb94f5d828fa09d
+AMI=ami-0f3c7d07486cad139
+SG_ID=sg-04bb94f5d828fa09d
 INSTANCES=("mongodb" "mysql" "redis" "rabbitmq" "shipping" "payment" "user" "cart" "catalogue" "dispatch" "web")
 DOMAIN_NAME="pjdevops.online"
 ZONE_ID=Z08780431GOB4T1TR5RPR
@@ -27,7 +29,7 @@ echo "$i: $IP_ADDRESS"
     {
         "Comment": "Creating a record set for cognito endpoint"
         ,"Changes": [{ 
-        "Action"              : "CREATE"
+        "Action"              : "UPSERT"
         ,"ResourceRecordSet"  : {
             "Name"              : "'$i'.'$DOMAIN_NAME'"
             ,"Type"             : "A"
