@@ -1,7 +1,7 @@
 #!/bin/bash
 AMI=ami-0f3c7d07486cad139
 SG_ID=sg-0e9964bfcec50386d
-INSTANCES=("mongodb" "mysql" "redis" "rabbitmq" "shipping" "payment" "user" "cart" "catalogue" "dispatch" "web")
+INSTANCES=("mongodb" "mysql" "user" "cart" "catalogue" "redis" "rabbitmq" "shipping" "payment" "dispatch" "web")
 DOMAIN_NAME="gmdproducts.online"
 ZONE_ID=Z036409435RKJNFLFMM4O
 
