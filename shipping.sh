@@ -6,7 +6,7 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
-MYSQL_HOST=mysql.gmdproducts.online
+MYSQL_HOST=mysql.pjdevops.online
 
 R="\e[31m" #RED
 G="\e[32m" #GREEN

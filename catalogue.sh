@@ -17,7 +17,7 @@ G="\e[32m" #GREEN
 Y="\e[33m" #YELLOW
 N="\e[0m"  #NO COLOR
 
-MONGODB_HOST=mongodb.gmdproducts.online
+MONGODB_HOST=mongodb.pjdevops.online
 
 echo "script started executing at $TIMESTAMP" &>> $LOGFILE
 

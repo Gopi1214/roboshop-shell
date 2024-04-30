@@ -10,7 +10,7 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
-MONGODB_HOST=mongodb.gmdproducts.online
+MONGODB_HOST=mongodb.pjdevops.online
    
 #adding colours.
 
@@ -108,8 +108,8 @@ VALIDATE $? "copying mongo repo"
 
 dnf install mongodb-org-shell -y &>> $LOGFILE
 
-VALIDATE $? "installing mongodb client"
+VALIDATE $? "Installing MongoDB client"
 
 mongo --host $MONGODB_HOST </app/schema/user.js &>> $LOGFILE
 
-VALIDATE $? "loading schema into mongodb"
+VALIDATE $? "Loading user data into MongoDB"
